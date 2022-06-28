@@ -28,6 +28,9 @@
     }))
   }
 
+  const deleteItem = (id, e) => {
+    count.update(items => items = items.filter(item => item.id !== id))
+  }
 </script>
 
 <div class="m-auto max-w-md w-full overflow-hidden">
@@ -42,7 +45,7 @@
     {#each items as item}
       <li class="flex items-center justify-between todoItem {item.done ? "active" :""}">
         <p class="transition-all duration-200 ease-in-out delay-0 {item.done ? "active" :""} hover:pl-2 pr-2 " on:click={itemClick.bind(this, item.id)}>{item.text}</p>
-        <div class="flex items-center h-full justify-end icon hover:text-gray-400 active:text-white">
+        <div class="flex items-center h-full justify-end icon hover:text-gray-400 active:text-white" on:click="{deleteItem.bind(this, item.id)}">
           <i class="fa-solid fa-trash"></i>
         </div>
       </li>
