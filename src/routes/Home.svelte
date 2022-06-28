@@ -14,6 +14,7 @@
       text: itemText,
       done: false
     }])
+    itemText=""
   }
 
   const itemClick = (id, e) => {
@@ -41,7 +42,7 @@
     <input bind:value="{itemText}" class="p-4 pr-20 rounded bg-gray-900 text-white w-full shadow-inner outline-none" placeholder="Add new item..."/>
     <input  value="Add" type="submit" class="text-green-400 hover:text-green-300 bg-gray-900 font-semibold py-2 px-4 absolute right-0 mr-2 focus:outline-none active:text-green-200" />
   </form>
-  <ul class="m-0 my-4 p-0 list-none w-full">
+  <ul class="m-0 my-4 p-0 list-none w-full max-h-96 overflow-x-auto">
     {#each items as item}
       <li class="flex items-center justify-between todoItem {item.done ? "active" :""}">
         <p class="transition-all duration-200 ease-in-out delay-0 {item.done ? "active" :""} hover:pl-2 pr-2 " on:click={itemClick.bind(this, item.id)}>{item.text}</p>
