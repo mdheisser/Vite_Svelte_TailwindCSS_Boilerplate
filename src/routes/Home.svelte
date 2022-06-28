@@ -34,16 +34,17 @@
   <h1 class="uppercase text-2xl block font-bold py-6 text-gray-400 tracking-widest text-center">
     Tailwind CSS Todos
   </h1>
-  <div class="flex items-center justify-between relative">
-    <input bind:value="{itemText}" class="p-4 pr-20 border-t-2 border-green-500 rounded bg-gray-900 text-white w-full shadow-inner outline-none" placeholder="Add new item..."/>
-    <button on:click={addItem} class="text-green-400 hover:text-green-300 bg-gray-900 font-semibold py-2 px-4 absolute right-0 mr-2 focus:outline-none">
-      Add
-    </button>
-  </div>
+  <form on:submit|preventDefault={addItem} class="flex items-center justify-between relative">
+    <input bind:value="{itemText}" class="p-4 pr-20 rounded bg-gray-900 text-white w-full shadow-inner outline-none" placeholder="Add new item..."/>
+    <input  value="Add" type="submit" class="text-green-400 hover:text-green-300 bg-gray-900 font-semibold py-2 px-4 absolute right-0 mr-2 focus:outline-none active:text-green-200" />
+  </form>
   <ul class="m-0 my-4 p-0 list-none w-full">
     {#each items as item}
-      <li class="todoItem {item.done ? "active" :""}">
-        <p on:click={itemClick.bind(this, item.id)}>{item.text}</p>
+      <li class="flex items-center justify-between todoItem {item.done ? "active" :""}">
+        <p class="transition-all duration-200 ease-in-out delay-0 {item.done ? "active" :""} hover:pl-2 pr-2 " on:click={itemClick.bind(this, item.id)}>{item.text}</p>
+        <div class="flex items-center h-full justify-end icon hover:text-gray-400 active:text-white">
+          <i class="fa-solid fa-trash"></i>
+        </div>
       </li>
     {/each}
   </ul>
@@ -51,7 +52,6 @@
 
 <style>
   .todoItem {
-    display: flex;
     border-left-width: 4px;
     cursor: pointer;
     padding: 1rem;
@@ -59,15 +59,10 @@
     color: rgb(113, 128, 150);
     border-color: rgb(104, 211, 145);
   }
-  p {    
-    transition: all 0.2s ease-in-out 0s;
-  }
-  p:hover {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  .todoItem.active {
-    text-decoration: line-through;
+  .todoItem.active {    
     border-color: rgb(237, 137, 54);
+  }
+  p.active {
+    text-decoration: line-through;
   }
 </style>
