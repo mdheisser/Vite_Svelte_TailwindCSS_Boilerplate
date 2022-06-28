@@ -27,4 +27,34 @@
       Add
     </button>
   </div>
+  <ul class="m-0 my-4 p-0 list-none w-full">
+    {#each items as item}
+      <li class="todoItem {item.done ? "active" :""}">
+        <p>{item.text}</p>
+      </li>
+    {/each}
+  </ul>
 </div>
+
+<style>
+  .todoItem {
+    display: flex;
+    border-left-width: 4px;
+    cursor: pointer;
+    padding: 1rem;
+    margin: 0px 0px 0.25rem;
+    color: rgb(113, 128, 150);
+    border-color: rgb(104, 211, 145);
+  }
+  p {    
+    transition: all 0.2s ease-in-out 0s;
+  }
+  p:hover {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .todoItem.active {
+    text-decoration: line-through;
+    border-color: rgb(237, 137, 54);
+  }
+</style>

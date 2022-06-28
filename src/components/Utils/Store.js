@@ -10,6 +10,6 @@ export const count = writable([
   {
     id: v4(),
     text: 'Call Smith',
-    done: false
+    done: true
   }
 ])
