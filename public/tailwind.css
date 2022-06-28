@@ -1,0 +1,7 @@
+@tailwind utilities;
+@tailwind components;
+@tailwind base;
+
+a.active {
+  color: blue;
+}
