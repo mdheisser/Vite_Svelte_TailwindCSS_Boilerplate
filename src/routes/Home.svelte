@@ -15,6 +15,19 @@
       done: false
     }])
   }
+
+  const itemClick = (id, e) => {
+    count.update(items => items = items.map(item => {
+      if(item.id === id){
+        item.done = !item.done;
+        return item;
+      }
+      else{
+        return item;
+      }
+    }))
+  }
+
 </script>
 
 <div class="m-auto max-w-md w-full overflow-hidden">
@@ -30,7 +43,7 @@
   <ul class="m-0 my-4 p-0 list-none w-full">
     {#each items as item}
       <li class="todoItem {item.done ? "active" :""}">
-        <p>{item.text}</p>
+        <p on:click={itemClick.bind(this, item.id)}>{item.text}</p>
       </li>
     {/each}
   </ul>
